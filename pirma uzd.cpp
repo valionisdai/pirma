@@ -27,6 +27,7 @@ int main()
         cout << "Iveskite " << i+1 << " studenta:\n";
         Grupe.push_back(ivesk());
     }
+    cout << setw(10) << right << "Vardas" << " | " << setw(10) << "Pavarde " << " | " << setw(10) << fixed << "Galutinis (Vid.)" << endl;
     for(auto temp: Grupe)
         cout << setw(10) << right << temp.vard << " | " << setw(10) << temp.pav << " | " << setw(10) << fixed << setprecision(2) << temp.rez << endl;
 }
