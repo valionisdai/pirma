@@ -28,11 +28,11 @@ int main()
     int n;
     char a;
     cout << "Iveskite studentu skaiciu: "; cin >> n;
-    cout << "Ar norite, kad rezultatai butu sugeneruoti automatiskai? (T/N):"; cin >> a;
-    if(a=='T')
+    cout << "Ar norite, kad rezultatai butu sugeneruoti automatiskai? (t/n): "; cin >> a;
+    if(a=='t')
         for(int i=0; i<n; i++)
             Grupe.push_back(generuok());
-    else if(a=='N')
+    else if(a=='n')
         for(int i=0; i<n; i++)
         {
             cout << "Iveskite " << i+1 << " studenta:\n";
@@ -48,26 +48,29 @@ int main()
 
 Studentas ivesk(){
     Studentas laik;
-    int sum =0, n, m;
+    int sum=0, m, i=0;
         cout << "Iveskite varda: "; cin >> laik.vard;
         cout << "Iveskite pavarde: "; cin >> laik.pav;
-        cout << "Iveskite studento pazymiu skaiciu: "; cin >> n;
-        for(int i=0; i<n; i++)
+        cout << "Iveskite studento pazymius (iveskite 0, jei baigiate vesti pazymius): " << endl;
+        while(true)
             {
-                cout << "Iveskite: " << i+1 << " paz. is " << n << ": " << endl; cin >> m;
+                cin >> m;
+                if(m==0) break;
                 laik.paz.push_back(m);
                 sum+=m;
+                i++;
             }
+    cout << "Studento pazymiu skaicius: " << i << endl;
             // vidurkis
     cout << "Iveskite studento egzamino rezultata: "; cin >> laik.egzas;
-    laik.rez = laik.egzas*0.6 + sum/laik.paz.size()*0.4;
+    laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
 
             //mediana
     sort(laik.paz.begin(), laik.paz.end());
     float mediana;
     int paz_sk = laik.paz.size();
     if(paz_sk % 2 == 0)
-        mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2;
+        mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2.0;
     else
         mediana = laik.paz[paz_sk/2];
     laik.med = laik.egzas*0.6 + mediana*0.4;
@@ -79,31 +82,30 @@ Studentas generuok(){
     Studentas laik;
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> paz(1, 10);
-    uniform_int_distribution<int> kiekis(1, 10);
-    uniform_int_distribution<int> egzas(1, 10);
+    uniform_int_distribution<int> generuojam(1, 10);
+
     int sum =0;
         cout << "Iveskite varda: "; cin >> laik.vard;
         cout << "Iveskite pavarde: "; cin >> laik.pav;
-    int kiek = kiekis(gen);
+    int kiek = generuojam(gen);
     cout << "Sugeneruotas pazymiu skaicius: " << kiek << endl;
         for(int i=0; i<kiek; i++)
             {
-                int pazymiai = paz(gen);
+                int pazymiai = generuojam(gen);
                 laik.paz.push_back(pazymiai);
                 sum+=pazymiai;
             }
             // vidurkis
 
-    laik.egzas = egzas(gen);
-    laik.rez = laik.egzas*0.6 + sum/laik.paz.size()*0.4;
+    laik.egzas = generuojam(gen);
+    laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
 
             //mediana
     sort(laik.paz.begin(), laik.paz.end());
     float mediana;
     int paz_sk = laik.paz.size();
     if(paz_sk % 2 == 0)
-        mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2;
+        mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2.0;
     else
         mediana = laik.paz[paz_sk/2];
     laik.med = laik.egzas*0.6 + mediana*0.4;
