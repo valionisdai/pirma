@@ -1,3 +1,4 @@
+
 # pirma
 
 
@@ -6,3 +7,4 @@
   3. Pridėtas medianos skaičiavimas, sutvarkytos kitos smulkios kodo klaidos.
   4. Pridėtas automatinis pažymių generavimas.
   5. Sutvarkytas pažymių įvedimas (nebėra ribojamas jų skaičius), pataisytos kitos smulkios klaidos.
+  6. Pridėtas pasirinkimas skaičiuoti mediana, vidurki ar abu.
