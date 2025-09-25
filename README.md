@@ -8,3 +8,4 @@
   4. Pridėtas automatinis pažymių generavimas.
   5. Sutvarkytas pažymių įvedimas (nebėra ribojamas jų skaičius), pataisytos kitos smulkios klaidos.
   6. Pridėtas pasirinkimas skaičiuoti mediana, vidurki ar abu.
+  7. Pridėtas skaitymas iš failo, šiek tiek optimizuotas kodas.
