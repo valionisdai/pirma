@@ -41,9 +41,14 @@ int main()
             for(int i=0; i<n; i++)
                 Grupe.push_back(skaiciuojam(a, b));
         }
+    sort(Grupe.begin(), Grupe.end(),[](const Studentas &a, const Studentas &b) {
+         if (a.pav == b.pav)
+             return a.vard < b.vard;
+         return a.pav < b.pav;
+     });
     cout << setw(10) << right << "Vardas" << " | " << setw(10) << right << "Pavarde " << " | " << setw(16) << right;
     if(b==1) cout << "Galutinis (Vid.)" << endl;
-            else if(b==2) cout << "Galutinis (Med.)" << endl;
+            else if(b==2) {cout << "Galutinis (Med.)" << endl;}
             else if(b==3) cout << "Galutinis (Vid.)" << " / " << setw(16) << right << "Galutinis (Med.)" << endl;
     for(auto temp: Grupe)
         {
