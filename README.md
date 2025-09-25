@@ -9,3 +9,5 @@
   5. Sutvarkytas pažymių įvedimas (nebėra ribojamas jų skaičius), pataisytos kitos smulkios klaidos.
   6. Pridėtas pasirinkimas skaičiuoti mediana, vidurki ar abu.
   7. Pridėtas skaitymas iš failo, šiek tiek optimizuotas kodas.
+# v0.1
+  1. Pridėtas rušiavimas išvedant rezultatus (pagal pavardę).
