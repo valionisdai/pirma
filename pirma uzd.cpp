@@ -7,6 +7,7 @@
 #include <random>
 
 
+
 using namespace std;
 
 struct Studentas{
@@ -23,6 +24,7 @@ vector<Studentas> failas(int b);
 
 int main()
 {
+    ofstream wr("rez.txt");
     vector<Studentas> Grupe;
     int n, a, b;
     cout << "Norite apskaiciuoti:" << endl;
@@ -41,31 +43,55 @@ int main()
             for(int i=0; i<n; i++)
                 Grupe.push_back(skaiciuojam(a, b));
         }
-    sort(Grupe.begin(), Grupe.end(),[](const Studentas &a, const Studentas &b) {
-         return a.pav < b.pav;
-     });
-    cout << setw(10) << right << "Vardas" << " | " << setw(10) << right << "Pavarde " << " | " << setw(16) << right;
-    if(b==1) {cout << "Galutinis (Vid.)" << endl; cout << "------------------------------------------" << endl;}
-            else if(b==2) {cout << "Galutinis (Med.)" << endl; cout << "------------------------------------------" << endl;}
-            else if(b==3) {cout << "Galutinis (Vid.)" << " / " << setw(16) << right << "Galutinis (Med.)" << endl; cout << "-------------------------------------------------------------" << endl;}
-    for(auto temp: Grupe) 
+    sort(Grupe.begin(), Grupe.end(), [](const Studentas& a, const Studentas& b){
+    auto extractNumber = [](const string& vardas){
+        size_t pos = vardas.find_first_of("0123456789");
+        if (pos != string::npos)
+            return stoi(vardas.substr(pos));
+        return 0;
+        };
+    return extractNumber(a.vard) < extractNumber(b.vard);
+    });
+
+    wr << setw(15) << right << "Vardas" << " | " << setw(15) << right << "Pavarde " << " | " << setw(18) << right;
+    if(b==1) {wr << "Galutinis (Vid.)" << endl; wr << "------------------------------------------" << endl;}
+            else if(b==2) {wr << "Galutinis (Med.)" << endl; wr << "------------------------------------------" << endl;}
+            else if(b==3) {wr << "Galutinis (Vid.)" << " / " << setw(18) << right << "Galutinis (Med.)" << endl; wr << "---------------------------------------------------------------------------" << endl;}
+    for(auto temp: Grupe)
         {
-            cout << setw(10) << right << temp.vard << " | " << setw(10) << temp.pav << " | " << setw(16) << fixed << right << setprecision(2);
-            if(b==1) cout << temp.rez << endl;
-            else if(b==2) cout << setw(16) << right << temp.med << endl;
-            else if (b==3) cout << temp.rez << " / " << setw(16) <<  right << temp.med << endl;
+            wr << setw(15) << right << temp.vard << " | " << setw(15) << temp.pav << " | " << setw(18) << fixed << right << setprecision(2);
+            if(b==1) wr << temp.rez << endl;
+            else if(b==2) wr << setw(18) << right << temp.med << endl;
+            else if (b==3) wr << temp.rez << " / " << setw(18) <<  right << temp.med << endl;
         }
 }
 
 vector<Studentas> failas(int b)
 {
-    Studentas laik;
+    string failvar;
+    int l;
     vector<Studentas> Grupe;
-    ifstream rd("kursiokai.txt");
+    cout << "Is kurio failo norite skaityti duomenis?" << endl;
+    cout << "(1) kursiokai.txt" << endl;
+    cout << "(2) studentai10000.txt" << endl;
+    cout << "(3) studentai100000.txt" << endl;
+    cout << "(4) studentai1000000.txt" << endl;
+    cin >> l;
+
+    if(l==1)
+         failvar = "kursiokai.txt";
+    else if(l==2)
+         failvar = "studentai10000.txt";
+    else if(l==3)
+         failvar = "studentai100000.txt";
+    else if(l==4)
+         failvar = "studentai1000000.txt";
+    ifstream rd(failvar);
     string z, x;
     int j=0, temp, k, sum=0;
     while(true)
     {
+        sum = 0;
         rd >> z;
         j++;
         if(z=="Egz.")
@@ -74,6 +100,8 @@ vector<Studentas> failas(int b)
     k=j-3;
     while(rd >> z >> x)
     {
+        sum=0;
+        Studentas laik;
         laik.pav = x;
         laik.vard = z;
         for(int i=0;i<k;i++)
