@@ -42,15 +42,13 @@ int main()
                 Grupe.push_back(skaiciuojam(a, b));
         }
     sort(Grupe.begin(), Grupe.end(),[](const Studentas &a, const Studentas &b) {
-         if (a.pav == b.pav)
-             return a.vard < b.vard;
          return a.pav < b.pav;
      });
     cout << setw(10) << right << "Vardas" << " | " << setw(10) << right << "Pavarde " << " | " << setw(16) << right;
-    if(b==1) cout << "Galutinis (Vid.)" << endl;
-            else if(b==2) {cout << "Galutinis (Med.)" << endl;}
-            else if(b==3) cout << "Galutinis (Vid.)" << " / " << setw(16) << right << "Galutinis (Med.)" << endl;
-    for(auto temp: Grupe)
+    if(b==1) {cout << "Galutinis (Vid.)" << endl; cout << "------------------------------------------" << endl;}
+            else if(b==2) {cout << "Galutinis (Med.)" << endl; cout << "------------------------------------------" << endl;}
+            else if(b==3) {cout << "Galutinis (Vid.)" << " / " << setw(16) << right << "Galutinis (Med.)" << endl; cout << "-------------------------------------------------------------" << endl;}
+    for(auto temp: Grupe) 
         {
             cout << setw(10) << right << temp.vard << " | " << setw(10) << temp.pav << " | " << setw(16) << fixed << right << setprecision(2);
             if(b==1) cout << temp.rez << endl;
@@ -76,8 +74,8 @@ vector<Studentas> failas(int b)
     k=j-3;
     while(rd >> z >> x)
     {
-        laik.pav = z;
-        laik.vard = x;
+        laik.pav = x;
+        laik.vard = z;
         for(int i=0;i<k;i++)
         {
             rd >> temp;
