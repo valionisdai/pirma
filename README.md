@@ -11,3 +11,4 @@
   7. Pridėtas skaitymas iš failo, šiek tiek optimizuotas kodas.
 # v0.1
   1. Pridėtas rušiavimas išvedant rezultatus (pagal pavardę).
+  2. Pridėtas rūšiavimas prieš išvedima (pagal vardą), sutvarkytos minimalios kodo klaidos, pridėtas failu pasirinkimas.
