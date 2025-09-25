@@ -18,29 +18,29 @@ float rez;
 float med;
 };
 
-Studentas ivesk(int b);
-Studentas generuok(int b);
-
+Studentas skaiciuojam(int a, int b);
+vector<Studentas> failas(int b);
 
 int main()
 {
     vector<Studentas> Grupe;
-    int n;
-    char a;
-    int b;
-    cout << "Iveskite studentu skaiciu: "; cin >> n;
-    cout << "Norite apskaiciuoti vidurki(1), mediana(2) ar abu(3): "; cin >> b;
-    cout << "Ar norite, kad rezultatai butu sugeneruoti automatiskai? (t/n): "; cin >> a;
-    if(a=='t')
-        for(int i=0; i<n; i++)
-            Grupe.push_back(generuok(b));
-    else if(a=='n')
-        for(int i=0; i<n; i++)
+    int n, a, b;
+    cout << "Norite apskaiciuoti:" << endl;
+    cout << "(1) Vidurki" << endl;
+    cout << "(2) Mediana" << endl;
+    cout << "(3) Abu" << endl; cin >> b;
+    cout << "Norite:" << endl;
+    cout << "(1) Generuoti automatiskai rezultatus" << endl;
+    cout << "(2) Ranka suvesti rezultatus" << endl;
+    cout << "(3) Skaityti rezultatus is failo" << endl; cin >> a;
+    if(a==3)
+        Grupe = failas(b);
+    else
         {
-            cout << "Iveskite " << i+1 << " studenta:\n";
-            Grupe.push_back(ivesk(b));
+            cout << "Iveskite studentu skaiciu: "; cin >> n;
+            for(int i=0; i<n; i++)
+                Grupe.push_back(skaiciuojam(a, b));
         }
-
     cout << setw(10) << right << "Vardas" << " | " << setw(10) << right << "Pavarde " << " | " << setw(16) << right;
     if(b==1) cout << "Galutinis (Vid.)" << endl;
             else if(b==2) cout << "Galutinis (Med.)" << endl;
@@ -54,9 +54,75 @@ int main()
         }
 }
 
-Studentas ivesk(int b){
+vector<Studentas> failas(int b)
+{
     Studentas laik;
-    int sum=0, m, i=0;
+    vector<Studentas> Grupe;
+    ifstream rd("kursiokai.txt");
+    string z, x;
+    int j=0, temp, k, sum=0;
+    while(true)
+    {
+        rd >> z;
+        j++;
+        if(z=="Egz.")
+            break;
+    }
+    k=j-3;
+    while(rd >> z >> x)
+    {
+        laik.pav = z;
+        laik.vard = x;
+        for(int i=0;i<k;i++)
+        {
+            rd >> temp;
+            laik.paz.push_back(temp);
+            sum+=temp;
+        }
+        rd >> laik.egzas;
+
+        if(b==1 || b==3)
+            laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
+            //mediana
+        if(b==2 || b==3)
+        {
+            sort(laik.paz.begin(), laik.paz.end());
+            float mediana;
+            int paz_sk = laik.paz.size();
+            if(paz_sk % 2 == 0)
+                mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2.0;
+            else
+                mediana = laik.paz[paz_sk/2];
+            laik.med = laik.egzas*0.6 + mediana*0.4;
+        }
+        Grupe.push_back(laik);
+    }
+    rd.close();
+    return Grupe;
+}
+
+Studentas skaiciuojam(int a, int b){
+    Studentas laik;
+    int sum=0, m, j=0;
+    if(a==1){
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> generuojam(1, 10);
+        cout << "Iveskite varda: "; cin >> laik.vard;
+        cout << "Iveskite pavarde: "; cin >> laik.pav;
+        int kiek = generuojam(gen);
+        cout << "Sugeneruotas pazymiu skaicius: " << kiek << endl;
+        for(int i=0; i<kiek; i++)
+            {
+                int pazymiai = generuojam(gen);
+                laik.paz.push_back(pazymiai);
+                sum+=pazymiai;
+            }
+
+        laik.egzas = generuojam(gen);
+    }
+    else if(a==2)
+    {
         cout << "Iveskite varda: "; cin >> laik.vard;
         cout << "Iveskite pavarde: "; cin >> laik.pav;
         cout << "Iveskite studento pazymius (iveskite 0, jei baigiate vesti pazymius): " << endl;
@@ -66,14 +132,14 @@ Studentas ivesk(int b){
                 if(m==0) break;
                 laik.paz.push_back(m);
                 sum+=m;
-                i++;
+                j++;
             }
-    cout << "Studento pazymiu skaicius: " << i << endl;
+    cout << "Studento pazymiu skaicius: " << j << endl;
             // vidurkis
     cout << "Iveskite studento egzamino rezultata: "; cin >> laik.egzas;
+    }
     if(b==1 || b==3)
         laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
-
             //mediana
     if(b==2 || b==3)
     {sort(laik.paz.begin(), laik.paz.end());
@@ -87,46 +153,5 @@ Studentas ivesk(int b){
     }
     return laik;
 }
-
-
-Studentas generuok(int b){
-    Studentas laik;
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> generuojam(1, 10);
-
-    int sum =0;
-        cout << "Iveskite varda: "; cin >> laik.vard;
-        cout << "Iveskite pavarde: "; cin >> laik.pav;
-    int kiek = generuojam(gen);
-    cout << "Sugeneruotas pazymiu skaicius: " << kiek << endl;
-        for(int i=0; i<kiek; i++)
-            {
-                int pazymiai = generuojam(gen);
-                laik.paz.push_back(pazymiai);
-                sum+=pazymiai;
-            }
-            // vidurkis
-
-    laik.egzas = generuojam(gen);
-    float mediana=0;
-    laik.rez=0;
-    if(b==1 || b==3)
-        laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
-
-
-            //mediana
-    if(b==2 || b==3)
-    {sort(laik.paz.begin(), laik.paz.end());
-    int paz_sk = laik.paz.size();
-    if(paz_sk % 2 == 0)
-        mediana = (laik.paz[paz_sk/2-1] + laik.paz[paz_sk/2])/2.0;
-    else
-        mediana = laik.paz[paz_sk/2];
-    laik.med = laik.egzas*0.6 + mediana*0.4;
-    }
-    return laik;
-}
-
 
 
