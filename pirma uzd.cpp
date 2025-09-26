@@ -19,23 +19,30 @@ float rez;
 float med;
 };
 
-Studentas skaiciuojam(int a, int b);
-vector<Studentas> failas(int b);
+Studentas skaiciuojam(char a, char b);
+vector<Studentas> failas(char b);
 
 int main()
 {
     ofstream wr("rez.txt");
     vector<Studentas> Grupe;
-    int n, a, b;
+    int n;
+    char a, b;
     cout << "Norite apskaiciuoti:" << endl;
-    cout << "(1) Vidurki" << endl;
-    cout << "(2) Mediana" << endl;
-    cout << "(3) Abu" << endl; cin >> b;
+        cout << "(1) Vidurki" << endl;
+        cout << "(2) Mediana" << endl;
+        cout << "(3) Abu" << endl; cin >> b;
+    while(true)
+    {if(b=='1' || b=='2' || b=='3')break;
+     else {cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 3:" << endl; cin >> b;}}
     cout << "Norite:" << endl;
     cout << "(1) Generuoti automatiskai rezultatus" << endl;
     cout << "(2) Ranka suvesti rezultatus" << endl;
     cout << "(3) Skaityti rezultatus is failo" << endl; cin >> a;
-    if(a==3)
+    while(true)
+    {if(a=='1' || a=='2' || a=='3')break;
+     else {cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 3:" << endl; cin >> a;}}
+    if(a=='3')
         Grupe = failas(b);
     else
         {
@@ -54,22 +61,22 @@ int main()
     });
 
     wr << setw(15) << right << "Vardas" << " | " << setw(15) << right << "Pavarde " << " | " << setw(18) << right;
-    if(b==1) {wr << "Galutinis (Vid.)" << endl; wr << "------------------------------------------" << endl;}
-            else if(b==2) {wr << "Galutinis (Med.)" << endl; wr << "------------------------------------------" << endl;}
-            else if(b==3) {wr << "Galutinis (Vid.)" << " / " << setw(18) << right << "Galutinis (Med.)" << endl; wr << "---------------------------------------------------------------------------" << endl;}
+    if(b=='1') {wr << "Galutinis (Vid.)" << endl; wr << "------------------------------------------" << endl;}
+            else if(b=='2') {wr << "Galutinis (Med.)" << endl; wr << "------------------------------------------" << endl;}
+            else if(b=='3') {wr << "Galutinis (Vid.)" << " / " << setw(18) << right << "Galutinis (Med.)" << endl; wr << "---------------------------------------------------------------------------" << endl;}
     for(auto temp: Grupe)
         {
             wr << setw(15) << right << temp.vard << " | " << setw(15) << temp.pav << " | " << setw(18) << fixed << right << setprecision(2);
-            if(b==1) wr << temp.rez << endl;
-            else if(b==2) wr << setw(18) << right << temp.med << endl;
-            else if (b==3) wr << temp.rez << " / " << setw(18) <<  right << temp.med << endl;
+            if(b=='1') wr << temp.rez << endl;
+            else if(b=='2') wr << setw(18) << right << temp.med << endl;
+            else if (b=='3') wr << temp.rez << " / " << setw(18) <<  right << temp.med << endl;
         }
 }
 
-vector<Studentas> failas(int b)
+vector<Studentas> failas(char b)
 {
     string failvar;
-    int l;
+    char l;
     vector<Studentas> Grupe;
     cout << "Is kurio failo norite skaityti duomenis?" << endl;
     cout << "(1) kursiokai.txt" << endl;
@@ -77,14 +84,17 @@ vector<Studentas> failas(int b)
     cout << "(3) studentai100000.txt" << endl;
     cout << "(4) studentai1000000.txt" << endl;
     cin >> l;
+    while(true)
+    {if(l=='1' || l=='2' || l=='3' || l=='4')break;
+     else {cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin >> l;}}
 
-    if(l==1)
+    if(l=='1')
          failvar = "kursiokai.txt";
-    else if(l==2)
+    else if(l=='2')
          failvar = "studentai10000.txt";
-    else if(l==3)
+    else if(l=='3')
          failvar = "studentai100000.txt";
-    else if(l==4)
+    else if(l=='4')
          failvar = "studentai1000000.txt";
     ifstream rd(failvar);
     string z, x;
@@ -112,10 +122,10 @@ vector<Studentas> failas(int b)
         }
         rd >> laik.egzas;
 
-        if(b==1 || b==3)
+        if(b=='1' || b=='3')
             laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
             //mediana
-        if(b==2 || b==3)
+        if(b=='2' || b=='3')
         {
             sort(laik.paz.begin(), laik.paz.end());
             float mediana;
@@ -132,10 +142,10 @@ vector<Studentas> failas(int b)
     return Grupe;
 }
 
-Studentas skaiciuojam(int a, int b){
+Studentas skaiciuojam(char a, char b){
     Studentas laik;
     int sum=0, m, j=0;
-    if(a==1){
+    if(a=='1'){
         random_device rd;
         mt19937 gen(rd());
         uniform_int_distribution<int> generuojam(1, 10);
@@ -152,7 +162,7 @@ Studentas skaiciuojam(int a, int b){
 
         laik.egzas = generuojam(gen);
     }
-    else if(a==2)
+    else if(a=='2')
     {
         cout << "Iveskite varda: "; cin >> laik.vard;
         cout << "Iveskite pavarde: "; cin >> laik.pav;
@@ -169,10 +179,10 @@ Studentas skaiciuojam(int a, int b){
             // vidurkis
     cout << "Iveskite studento egzamino rezultata: "; cin >> laik.egzas;
     }
-    if(b==1 || b==3)
+    if(b=='1' || b=='3')
         laik.rez = laik.egzas*0.6 + ((float)sum/laik.paz.size())*0.4;
             //mediana
-    if(b==2 || b==3)
+    if(b=='2' || b=='3')
     {sort(laik.paz.begin(), laik.paz.end());
     float mediana;
     int paz_sk = laik.paz.size();
@@ -184,5 +194,6 @@ Studentas skaiciuojam(int a, int b){
     }
     return laik;
 }
+
 
 
