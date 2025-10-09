@@ -11,7 +11,8 @@
 
 using namespace std;
 
-struct Studentas{
+struct Studentas
+{
 string vard;
 string pav;
 vector<int> paz;
@@ -186,7 +187,6 @@ vector<Studentas> failas(int b, string failvardas)
     }
     auto endas = chrono::high_resolution_clock::now();
     cout << "Rezultatu skaiciavimo laikas: " << chrono::duration_cast<chrono::seconds>(endas - startas).count() << " s" << endl;
-
     return Grupe;
 }
 
@@ -247,10 +247,7 @@ string generuojame(string g)
     auto end = chrono::high_resolution_clock::now();
     cout << "Failo generavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
     return failovardas;
-
-
 }
-
 
 Studentas skaiciuojam(int a, int b)
 {
@@ -322,3 +319,4 @@ void skmediana(Studentas& laik)
     }
     laik.med = laik.egzas * 0.6 + mediana * 0.4;
 }
+
