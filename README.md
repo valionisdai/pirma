@@ -12,3 +12,4 @@
 # v0.1
   1. Pridėtas rušiavimas išvedant rezultatus (pagal pavardę).
   2. Pridėtas rūšiavimas prieš išvedima (pagal vardą), sutvarkytos minimalios kodo klaidos, pridėtas failu pasirinkimas.
+  3. Labai stipriai pakoreguotas kodas, pridėtas duomenų generavimas, išvedimas 2 failus, rušiavimas. Kodas daug optimalesnis. Pridėtas programos veikimo laiko ir greičio matavimas.
