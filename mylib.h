@@ -35,11 +35,36 @@ void rusiavimas(int b, vector<Studentas> Grupe, string failovardas);
 
 void rusiavimas(int b, vector<Studentas> Grupe, string failovardas)
 {
+    int g, h;
+    cout << "Norite rusiuoti pagal:\n(1) Varda, (2) Pavarde, (3) Gal. Vid., (4) Gal. Med.\n" << endl;
+    while(true)
+    {
+        if(cin >> g && g>=1 && g<=4) break;
+        cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cout << "Pasirinkite krypti:\n(1) Didejancia tvarka\n(2) Mazejancia tvarka" << endl;
+    while(true)
+    {
+        if(cin >> h && 0<h && h<3) break;
+        cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 2:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
     auto start = chrono::high_resolution_clock::now();
-    sort(std::execution::par, Grupe.begin(), Grupe.end(), [](const Studentas& a, const Studentas& b)
-    { return a.rez > b.rez; });
+    sort(std::execution::par, Grupe.begin(), Grupe.end(), [=](const Studentas& a, const Studentas& b)
+    { switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }
+    });
     auto end = chrono::high_resolution_clock::now();
-    cout << "Rikiavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
+    cout << "Rikiavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s\n";
     auto startas = chrono::high_resolution_clock::now();
     vector<Studentas> gerai, blogai;
     for(const auto& temp : Grupe)
@@ -109,7 +134,7 @@ vector<Studentas> failas(int b, string failvardas)
     while(true)
     {
         if(cin >> l && l>=1 && l<=4) break;
-        cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 3:" << endl;
+        cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
      }
