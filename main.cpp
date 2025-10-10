@@ -1,5 +1,7 @@
 #include "mylib.h"
 
+
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -24,14 +26,14 @@ int main()
      }
     if(c==1)
     {
+        string failvardas = generuojame();
         for(int i=1;i<=5;i++)
         {
-            cout << "Pasirinkinte " << i << " faila" << endl;
-            string failvardas = generuojame(to_string(i));
             Grupe = failas(b, failvardas);
             rusiavimas(b, Grupe, failvardas);
             Grupe.clear();
         }
+
     }
     if(c==2)
     {
@@ -59,4 +61,6 @@ int main()
         rusiavimas(b, Grupe, "1");
     }
 }
+
+
 
