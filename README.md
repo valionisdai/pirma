@@ -12,7 +12,8 @@
 # v0.1
   1. Pridėtas rušiavimas išvedant rezultatus (pagal pavardę).
   2. Pridėtas rūšiavimas prieš išvedima (pagal vardą), sutvarkytos minimalios kodo klaidos, pridėtas failu pasirinkimas.
-  3. Labai stipriai pakoreguotas kodas, pridėtas duomenų generavimas, išvedimas 2 failus, rušiavimas. Kodas daug optimalesnis. Pridėtas programos veikimo laiko ir greičio matavimas.
-  4. Patvarkytas kodas, pridetas "header" failas (mylib.h), į kurį perkeltos visos funkcijos. Faile "main.cpp" palikta tik pragrindine funkcija.
-  5. Pridėtas pasirinktinas rušiavimas.
+# v0.2
+  1. Labai stipriai pakoreguotas kodas, pridėtas duomenų generavimas, išvedimas 2 failus, rušiavimas. Kodas daug optimalesnis. Pridėtas programos veikimo laiko ir greičio matavimas.
+  2. Patvarkytas kodas, pridetas "header" failas (mylib.h), į kurį perkeltos visos funkcijos. Faile "main.cpp" palikta tik pragrindine funkcija.
+  3. Pridėtas pasirinktinas rušiavimas.
      
