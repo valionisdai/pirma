@@ -19,7 +19,7 @@
 
 
 # veikimo sparta:
-Kodas veikia greičiau naudojant vector, o ne list. Tai labiausiai matosi rušiavime. 
+Kodas veikia greičiau naudojant vector, o ne list. Tai labiausiai matosi rušiavime, šiek tiek ir skaičiavimuose. 
 
 # Device spec.:
 Processor - Intel(R) Core(TM) I5-10300H CPU @ 2.50GHz (2.50 GHz)
