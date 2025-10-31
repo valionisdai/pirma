@@ -24,17 +24,18 @@
 4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
 
 # veikimo sparta:
+Testai atlikti naudojant *work* kompiuterį
 Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
 Išvados: 
 Dirbant su nedideliu kiekiu duomenų, naudojamo konteinerio tipas nedaro didelio skirtumo, tačiau dirbant su labai dideliais kiekiais duomenų (pvz. 10 000 000 eilučių) veikimo spartos skirtumai matosi akivaizdziai. Naudojant kontenerį ***vector*** skaičiavimai, rikiavimas, rūšiavimas ir rašymas į failus trunka gerokai greičiau, negu naudojant konteinerį ***list***.
 
 # Device spec.:
-1:
+1 (*personal*):
 OS - Windows 11 Pro
 Processor - Intel(R) Core(TM) I5-10300H CPU @ 2.50GHz (2.50 GHz)
 RAM - 16.0 GB
 System type - 64-bit operating system, x64-based processor
-2:
+2 (*work*):
 OS - Windows 11 Home
 Processor - AMD Ryzen 5 7530U with Radeon Graphics (2.00 GHz)
 RAM - 16.0 GB
