@@ -25,55 +25,43 @@ int pazym_gen()
     return distrib(gen);
 }
 
-string generuojame()
+int generuojame()
 {
-    int a, n;
-    cout << "Pasirinkite kiek studentu norite sugeneruoti:" << endl;
-    cout << "(1) 1000 stud., (2) 10000 stud., (3) 100000 stud., (4) 1000000 stud., (5) 10000000 stud." << endl;
-    while(true)
-    {
-        if(cin >> a && a>=1 && a<=5) break;
-            cout << "Neteisinga ivestis, pasirinkite viena is skaiciu" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    if(a==1) a=1000;
-    if(a==2) a=10000;
-    if(a==3) a=100000;
-    if(a==4) a=1000000;
-    if(a==5) a=10000000;
-    string failovardas = "_stud_"+to_string(a)+".txt";
-    ofstream wr(failovardas);
+    int a=1000, n;
     cout << "Iveskite skaiciu pazymiu, kuriuos norite sugeneruoti (ne daugiau 20, be egz.): " << endl;
-    while(true)
-    {
-        if(cin >> n && n>0 && n<21) break;
-            cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 20." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
+        while(true)
+        {
+            if(cin >> n && n>0 && n<21) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 20." << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
     auto start = chrono::high_resolution_clock::now();
-    ostringstream oss;
-    oss << "Vardas" << " " << "Pavarde" << " " << right;
-    for(int i=0; i<n;i++)
+    for(int i=1;i<=5;i++)
     {
-        oss << "ND" << i+1 << " ";
-    }
-    oss << "Egz.\n";
-    for(int i=0;i<a;i++)
-    {
-        oss << "Vardas" << i+1 << " Pavarde" << i+1 << " ";
-        for(int j=0;j<n+1;j++)
-            oss << pazym_gen() << " ";
-        oss << "\n";
-    }
-    wr << oss.str();
-    oss.str("");
-    cout << failovardas << endl;
-    wr.close();
-    auto end = chrono::high_resolution_clock::now();
-    cout << "Failo generavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
-    return failovardas;
+        string failovardas = "stud_"+to_string(a)+".txt";
+        ofstream wr(failovardas);
+        ostringstream oss;
+        oss << "Vardas" << " " << "Pavarde" << " " << right;
+        for(int i=0; i<n;i++)
+        {
+            oss << "ND" << i+1 << " ";
+        }
+        oss << "Egz.\n";
+        for(int i=0;i<a;i++)
+        {
+            oss << "Vardas" << i+1 << " Pavarde" << i+1 << " ";
+            for(int j=0;j<n+1;j++)
+                oss << pazym_gen() << " ";
+            oss << "\n";
+        }
+        wr << oss.str();
+        oss.str("");
+        cout << failovardas << endl;
+        wr.close();
 
+        a=a*10;
+    }
+    auto end = chrono::high_resolution_clock::now();
+    cout << "Failu generavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
+    return 0;
 
 }
+
+
