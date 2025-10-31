@@ -14,15 +14,29 @@
   2. Pridėtas rūšiavimas prieš išvedima (pagal vardą), sutvarkytos minimalios kodo klaidos, pridėtas failu pasirinkimas.
 # v0.2
   1. Labai stipriai pakoreguotas kodas, pridėtas duomenų generavimas, išvedimas 2 failus, rušiavimas. Kodas daug optimalesnis. Pridėtas programos veikimo laiko ir greičio matavimas.
-  2. Patvarkytas kodas, pridetas "header" failas (mylib.h), į kurį perkeltos visos funkcijos. Faile "main.cpp" palikta tik pragrindine funkcija.
+  2. Patvarkytas kodas, pridetas ***header*** failas (*mylib.h*), į kurį perkeltos visos funkcijos. Faile *main.cpp* palikta tik pragrindine funkcija.
   3. Pridėtas pasirinktinas rušiavimas.
 
+# v0.3
+1. Gerokai pakeistas kodas. Viskas optimizuota.
+2. Pridėtas konteineris ***list***.
+3. Kodas parašytas naudojant šablonus (***templates***), kad būtų galima lengvai pasirinkti, kokį konteinerį naudoti.
+4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
 
 # veikimo sparta:
-Kodas veikia greičiau naudojant vector, o ne list. Tai labiausiai matosi rušiavime, šiek tiek ir skaičiavimuose. 
+Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
+Išvados: 
+Dirbant su nedideliu kiekiu duomenų, naudojamo konteinerio tipas nedaro didelio skirtumo, tačiau dirbant su labai dideliais kiekiais duomenų (pvz. 10 000 000 eilučių) veikimo spartos skirtumai matosi akivaizdziai. Naudojant kontenerį ***vector*** skaičiavimai, rikiavimas, rūšiavimas ir rašymas į failus trunka gerokai greičiau, negu naudojant konteinerį ***list***.
 
 # Device spec.:
+1:
+OS - Windows 11 Pro
 Processor - Intel(R) Core(TM) I5-10300H CPU @ 2.50GHz (2.50 GHz)
+RAM - 16.0 GB
+System type - 64-bit operating system, x64-based processor
+2:
+OS - Windows 11 Home
+Processor - AMD Ryzen 5 7530U with Radeon Graphics (2.00 GHz)
 RAM - 16.0 GB
 System type - 64-bit operating system, x64-based processor
 
