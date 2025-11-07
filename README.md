@@ -16,7 +16,7 @@
   Processor - Intel(R) Core(TM) I5-10300H CPU @ 2.50GHz (2.50 GHz)
   RAM - 16.0 GB
   System type - 64-bit operating system, x64-based processor
-  
+    
   2 (*work*):
   OS - Windows 11 Home
   Processor - AMD Ryzen 5 7530U with Radeon Graphics (2.00 GHz)
