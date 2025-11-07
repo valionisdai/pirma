@@ -3,14 +3,14 @@
 2. Pridėtas konteineris ***list***.
 3. Kodas parašytas naudojant šablonus (***templates***), kad būtų galima lengvai pasirinkti, kokį konteinerį naudoti.
 4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
-  ### veikimo sparta:
+  ### Veikimo sparta:
   Testai atlikti naudojant *work* kompiuterį
   Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
   Išvados: 
   Dirbant su nedideliu kiekiu duomenų, naudojamo konteinerio tipas nedaro didelio skirtumo, tačiau dirbant su labai dideliais kiekiais duomenų (pvz. 10 000     000 eilučių) veikimo spartos skirtumai matosi akivaizdziai. 
   Naudojant kontenerį ***vector*** skaičiavimai, rikiavimas, rūšiavimas ir rašymas į failus trunka   gerokai greičiau, negu naudojant konteinerį ***list***.
 
-  ## Device spec.:
+  ### Device spec.:
   1 (*personal*):
   OS - Windows 11 Pro
   Processor - Intel(R) Core(TM) I5-10300H CPU @ 2.50GHz (2.50 GHz)
