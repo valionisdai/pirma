@@ -3,7 +3,7 @@
 2. Pridėtas konteineris ***list***.
 3. Kodas parašytas naudojant šablonus (***templates***), kad būtų galima lengvai pasirinkti, kokį konteinerį naudoti.
 4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
-  ## veikimo sparta:
+  ### veikimo sparta:
   Testai atlikti naudojant *work* kompiuterį
   Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
   Išvados: 
