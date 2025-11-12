@@ -5,11 +5,23 @@
 4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
   ### Veikimo sparta:
   Testai atlikti naudojant *work* kompiuterį
+  Testai atlikti skaičiuojant vidurkį ir medianą, rūčiuojant pagal vidurkį, mažėjančia tvarka
   Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
+  | Failai              | **Skaitymas** |        | **Skaičiavimas** |        | **Rikiavimas** |        | **Rūšiavimas** |        | **Rašymas ("gerai")** |        | **Rašymas ("blogai")** |        |
+  |----------------------|:-------------:|:------:|:----------------:|:------:|:--------------:|:------:|:---------------:|:------:|:----------------------:|:------:|:-----------------------:|:------:|
+  |                      | **Vector**    | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** |
+  | **stud_1000.txt**     | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s |
+  | **stud_10000.txt**    | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s | 0s |
+  | **stud_100000.txt**   | 0s | 0s | 0s | 2s | 0s | 0s | 0s | 0s | 1s | 1s | 1s | 1s |
+  | **stud_1000000.txt**  | 0s | 2s | 2s | 2s | 2s | 2s | 0s | 1s | 2s | 2s | 1s | 1s |
+  | **stud_10000000.txt** | 2s | 1s | 21s | 29s | 5s | 16s | 3s | 16s | 23s | 32s | 16s | 23s |
+
+
+  
   Išvados: 
   Dirbant su nedideliu kiekiu duomenų, naudojamo konteinerio tipas nedaro didelio skirtumo, tačiau dirbant su labai dideliais kiekiais duomenų (pvz. 10 000     000 eilučių) veikimo spartos skirtumai matosi akivaizdziai. 
   Naudojant kontenerį ***vector*** skaičiavimai, rikiavimas, rūšiavimas ir rašymas į failus trunka   gerokai greičiau, negu naudojant konteinerį ***list***.
-
+  
   ### Device spec.:
   1 (*personal*):
   OS - Windows 11 Pro
