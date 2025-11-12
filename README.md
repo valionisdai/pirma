@@ -6,7 +6,6 @@
   ### Veikimo sparta:
   Testai atlikti naudojant *work* kompiuterį
   Testai atlikti skaičiuojant vidurkį ir medianą, rūčiuojant pagal vidurkį, mažėjančia tvarka
-  Rezultatų palyginimą žiūrėti paveikslėlyje *testu_rez.png*.
   | Failai              | **Skaitymas** |        | **Skaičiavimas** |        | **Rikiavimas** |        | **Rūšiavimas** |        | **Rašymas ("gerai")** |        | **Rašymas ("blogai")** |        |
   |----------------------|:-------------:|:------:|:----------------:|:------:|:--------------:|:------:|:---------------:|:------:|:----------------------:|:------:|:-----------------------:|:------:|
   |                      | **Vector**    | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** | **Vector** | **List** |
