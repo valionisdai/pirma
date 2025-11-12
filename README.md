@@ -4,7 +4,7 @@
 3. Kodas parašytas naudojant šablonus (***templates***), kad būtų galima lengvai pasirinkti, kokį konteinerį naudoti.
 4. Atlikti kodo veikimo spartos testai naudojant abu konteinerius (žiūrėti dalį "veikimo sparta")
   ### Veikimo sparta:
-  Testai atlikti naudojant *work* kompiuterį
+  Testai atlikti naudojant *work* kompiuterį  
   Testai atlikti skaičiuojant vidurkį ir medianą, rūčiuojant pagal vidurkį, mažėjančia tvarka
   | Failai              | **Skaitymas** |        | **Skaičiavimas** |        | **Rikiavimas** |        | **Rūšiavimas** |        | **Rašymas ("gerai")** |        | **Rašymas ("blogai")** |        |
   |----------------------|:-------------:|:------:|:----------------:|:------:|:--------------:|:------:|:---------------:|:------:|:----------------------:|:------:|:-----------------------:|:------:|
