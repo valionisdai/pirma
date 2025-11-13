@@ -6,6 +6,7 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+
     vector<string> failai_txt;
     int a, b, c, d, e, g, h;
 
@@ -27,7 +28,7 @@ int main()
             cout << "Generavimas baigtas!" << endl;
         }
     }
-    string folder = "./", nfailas;
+    string folder = "./src/", nfailas;
         for(const auto& entry : fs::directory_iterator(folder))
         {
             if(entry.path().extension() == ".txt" && entry.path().filename().string().find("rez") == string::npos)
@@ -58,6 +59,7 @@ int main()
         while(tst!=0)
         {
             cin >> nfailas;
+            nfailas=nfailas;
             for(const auto&temp:failai_txt)
                 if(temp==nfailas) tst=0;
             if(tst!=0)
@@ -98,7 +100,8 @@ int main()
             for(int i=1; i<=n; i++)
                 Grupe.push_back(skaiciuojam<list>(a, b));
             auto end = chrono::high_resolution_clock::now();
-            cout << "Skaiciavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
+            chrono::duration<double> elaps = end - start;
+            cout << "Skaiciavimo laikas: " << fixed << setprecision(3) << elaps.count() << " s" << endl;
             cout << "Norite rusiuoti pagal:\n(1) Varda, (2) Pavarde, (3) Gal. Vid., (4) Gal. Med." << endl;
             while(true) {if(cin >> g && g>=1 && g<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
             cout << "Pasirinkite krypti:\n(1) Didejancia tvarka\n(2) Mazejancia tvarka" << endl;
@@ -112,6 +115,5 @@ int main()
     if(kl==2) break;
     }
 }
-
 
 
