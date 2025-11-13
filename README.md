@@ -1,4 +1,8 @@
 # v1.0
+  Atnaujintas kodas, matuotas laikas rodomas po kablelio.
+  Optimizuotas kodas.
+  Pridetas ***CMakeLists.txt*** failas.
+  
   Atlikti rūšiavimo spartos testai:
   ### Naudojant  `vector` konteineri
   | Failai | **1 strategija** | **2 strategija** | **3 strategija** |
