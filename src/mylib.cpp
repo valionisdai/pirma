@@ -11,7 +11,8 @@ stringstream skaitymas(string failvar)
     auto startas = chrono::high_resolution_clock::now();
     buffer << rd.rdbuf();
     auto endas = chrono::high_resolution_clock::now();
-    cout << "Failo skaitymo laikas: " << chrono::duration_cast<chrono::seconds>(endas - startas).count() << " s" << endl;
+    chrono::duration<double> elapsed = endas - startas;
+    cout << "Failo skaitymo laikas: " << fixed << setprecision(3) << elapsed.count() << " s" << endl;
     rd.close();
     return buffer;
 }
@@ -29,9 +30,7 @@ int generuojame()
 {
     int a=1000, n;
     cout << "Iveskite skaiciu pazymiu, kuriuos norite sugeneruoti (ne daugiau 20, be egz.): " << endl;
-        while(true)
-        {
-            if(cin >> n && n>0 && n<21) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 20." << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+        while(true){if(cin >> n && n>0 && n<21) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 20." << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
     auto start = chrono::high_resolution_clock::now();
     for(int i=1;i<=5;i++)
     {
@@ -59,7 +58,8 @@ int generuojame()
         a=a*10;
     }
     auto end = chrono::high_resolution_clock::now();
-    cout << "Failu generavimo laikas: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " s" << endl;
+    chrono::duration<double> elaps = end - start;
+    cout << "Failu generavimo laikas: " <<  fixed << setprecision(3) << elaps.count() << " s" << endl;
     return 0;
 
 }
