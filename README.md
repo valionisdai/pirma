@@ -5,24 +5,24 @@
   
   Atlikti rūšiavimo spartos testai:
   ### Naudojant  `vector` konteineri
-  | Failai | **1 strategija** | **2 strategija** | **3 strategija** |
-  |:---|:-------------:|:-------------:|:-------------:|
-  | **stud_1000.txt**     | 0 s | 0 s | 0.000 s|
-  | **stud_10000.txt**    | 0 s | 0 s | 0.000 s|
-  | **stud_100000.txt**   | 0 s | 18 s | 0.005 s|
-  | **stud_1000000.txt**  | 0 s | --* | 0.060 s|
-  | **stud_10000000.txt** | 3 s | --* | 0.598 s|
+  | Failai | **1 strategija** | **2 strategija** | **3 strategija**| **4 strategija**** |
+  |:---|:-------------:|:-------------:|:-------------:| :--: |
+  | **stud_1000.txt**     | 0 s | 0 s | 0.000s |0.000 s|
+  | **stud_10000.txt**    | 0 s | 0 s | 0.000s |0.000 s|
+  | **stud_100000.txt**   | 0 s | 18 s| 0.002s |0.002 s|
+  | **stud_1000000.txt**  | 0 s | --* | 0.033s |0.033 s|
+  | **stud_10000000.txt** | 3 s | --* | 0.350s |0.338 s|
   
-  *Testas truko per ilgai
-
+  *Testas truko per ilgai  
+  **Vector ir list konteineriams skiriasi (list naudoja `splice`)
   ### Naudojant  `list` konteineri
-  | Failai | **1 strategija** | **2 strategija** | **3 strategija** |
-  |:---|:-------------:|:-------------:|:-------------:|
-  | **stud_1000.txt**     | 0s | 0s | 0.000 s|
-  | **stud_10000.txt**    | 0s | 0s | 0.000 s|
-  | **stud_100000.txt**   | 0s | 0s | 0.019 s|
-  | **stud_1000000.txt**  | 1s | 0s | 0.167 s|
-  | **stud_10000000.txt** | 16s | 7s | 1.889 s|
+  | Failai | **1 strategija** | **2 strategija** | **3 strategija**| **4 strategija**** |
+  |:---|:-------------:|:-------------:|:-------------:| :--: |
+  | **stud_1000.txt**     | 0s | 0s | 0.000s |0.000 s|
+  | **stud_10000.txt**    | 0s | 0s | 0.001s |0.000 s|
+  | **stud_100000.txt**   | 0s | 0s | 0.023s |0.019 s|
+  | **stud_1000000.txt**  | 1s | 0s | 0.320s |0.167 s|
+  | **stud_10000000.txt** | 16s | 7s| 4.077s |1.889 s|
 
 
 # v0.3
