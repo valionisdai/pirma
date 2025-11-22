@@ -8,7 +8,7 @@ int main()
     cin.tie(nullptr);
 
     vector<string> failai_txt;
-    int a, b, c, d, e, g, h;
+    int a, b, c, d, e, f, g, h;
 
     cout << "Ar turite duomenis? (1 - taip, 2 - ne)" << endl;
     while(true) {if(cin >> d && d>=1 && d<=2) break; cout << "Neteisinga ivestis, pasirinkite 1 arba 2" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
@@ -71,11 +71,12 @@ int main()
 
         cout << "Pasirinkite krypti:\n(1) Didejancia tvarka\n(2) Mazejancia tvarka" << endl;
         while(true) {if(cin >> h && 0<h && h<3) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 2:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
-
+        cout << "Kuria strategija norite naudoti rusiavimui?\n(1) Pirma\n(2) Antra\n(3) Trecia\n(4) Greiciausia abiems (skiriasi vektoriui ir sarasui)" << endl;
+        while(true) {if(cin >> f && f>=1 && f<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
         if(e==1)
-            dirbam<vector>(b, nfailas, g, h);
+            dirbam<vector>(b, nfailas, g, h, f);
         else if(e==2)
-            dirbam<list>(b, nfailas, g, h);
+            dirbam<list>(b, nfailas, g, h, f);
     }
     else
     {
@@ -91,7 +92,16 @@ int main()
             while(true) {if(cin >> g && g>=1 && g<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
             cout << "Pasirinkite krypti:\n(1) Didejancia tvarka\n(2) Mazejancia tvarka" << endl;
             while(true) {if(cin >> h && 0<h && h<3) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 2:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
-            rusiavimas<vector>(b, Grupe, "1", g, h);
+            cout << "Kuria strategija norite naudoti rusiavimui?\n(1) Pirma\n(2) Antra\n(3) Trecia\n(4) Greiciausia abiems (skiriasi vektoriui ir sarasui)" << endl;
+            while(true) {if(cin >> f && f>=1 && f<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+            if(f==1)
+                pirma_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==2)
+                antra_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==3)
+                trecia_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==4)
+                rusiavimas(b, Grupe, "1", g, h);
         }
         else
         {
@@ -106,7 +116,16 @@ int main()
             while(true) {if(cin >> g && g>=1 && g<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
             cout << "Pasirinkite krypti:\n(1) Didejancia tvarka\n(2) Mazejancia tvarka" << endl;
             while(true) {if(cin >> h && 0<h && h<3) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 2:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
-            rusiavimas<list>(b, Grupe, "1", g, h);
+            cout << "Kuria strategija norite naudoti rusiavimui?\n(1) Pirma\n(2) Antra\n(3) Trecia\n(4) Greiciausia abiems (skiriasi vektoriui ir sarasui)" << endl;
+            while(true) {if(cin >> f && f>=1 && f<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+            if(f==1)
+                pirma_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==2)
+                antra_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==3)
+                trecia_strat_rusiavimas(b, Grupe, "1", g, h);
+            else if(f==4)
+                rusiavimas(b, Grupe, "1", g, h);
         }
     }
     int kl;
