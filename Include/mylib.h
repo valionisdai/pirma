@@ -49,7 +49,17 @@ template <template<typename> class Container>
 void rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h);
 
 template<template<typename> class Container>
-void dirbam(int b, string nfailas, int g, int h);
+void dirbam(int b, string nfailas, int g, int h, int f);
+
+template <template<typename> class Container>
+void trecia_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h);
+
+template <template<typename> class Container>
+void antra_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h);
+
+template <template<typename> class Container>
+void pirma_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h);
+
 
 template<template<typename> class Container>
 Studentas<Container> skaiciuojam(int a, int b)
@@ -154,22 +164,6 @@ Container<Studentas<Container>> failas(int b, string failvardas)
 {
     string failvar;
     Container<Studentas<Container>> Grupe;
-    // if("1"==failvardas)
-    // {
-    //     int l;
-    //     cout << "Is kurio failo norite skaityti duomenis?\n(1) kursiokai.txt\n(2) studentai10000.txt\n(3) studentai100000.txt\n(4) studentai1000000.txt" << endl;
-    // while(true)
-    // {if(cin >> l && l>=1 && l<=4) break; cout << "Neteisinga ivestis, pasirinkite skaiciu nuo 1 iki 4:" << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
-    // if(l==1)
-    //      failvar = "./src/kursiokai.txt";
-    // else if(l==2)
-    //      failvar = "./src/studentai10000.txt";
-    // else if(l==3)
-    //      failvar = "./src/studentai100000.txt";
-    // else if(l==4)
-    //      failvar = "./src/studentai1000000.txt";
-    // }
-    // else 
     failvar = failvardas;
     stringstream buffer = skaitymas("./src/"+failvar);
     string line, z;
@@ -316,8 +310,175 @@ void isvedimas(int b, const Container<Studentas<Container>>& Grupe, string failo
 }
 
 template<template<typename> class Container>
-void dirbam(int b, string nfailas, int g, int h)
+void dirbam(int b, string nfailas, int g, int h, int f)
 {
     Container<Studentas<Container>> Grupe = failas<Container>(b, nfailas);
-    rusiavimas<Container>(b, Grupe, nfailas, g, h);
+    if(f==1)
+        pirma_strat_rusiavimas(b, Grupe, nfailas, g, h);
+    else if(f==2)
+        antra_strat_rusiavimas(b, Grupe, nfailas, g, h);
+    else if(f==3)
+        trecia_strat_rusiavimas(b, Grupe, nfailas, g, h);
+    else if(f==4)
+        rusiavimas(b, Grupe, nfailas, g, h);
+}
+
+template <template<typename> class Container>
+void pirma_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h)
+{
+    if constexpr (std::is_same_v<std::remove_cv_t<std::remove_reference_t<decltype(Grupe)>>,std::list<Studentas<Container>>>) 
+    {
+    auto start = chrono::high_resolution_clock::now();
+    Grupe.sort([=](const Studentas<Container>& a, const Studentas<Container>& b)
+    {switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }});
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elaps = end - start;
+    cout << "Rikiavimo laikas naudojant konteineri list: " << setprecision(3) << elaps.count() << " s\n";
+    }
+    else
+    {
+        auto start = chrono::high_resolution_clock::now();
+        sort(std::execution::par, Grupe.begin(), Grupe.end(), [=](const Studentas<Container>& a, const Studentas<Container>& b)
+        { switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }
+        });
+        auto end = chrono::high_resolution_clock::now();
+        chrono::duration<double> elaps = end - start;
+        cout << "Rikiavimo laikas naudojant konteineri vector: " << fixed << setprecision(3) << elaps.count() << " s\n";
+    }
+
+    Container<Studentas<Container>> gerai, blogai;
+    auto startas = chrono::high_resolution_clock::now();
+    for(const auto& temp : Grupe)
+    {
+        if(temp.rez>=5)
+            gerai.push_back(temp);
+        else
+            blogai.push_back(temp);
+    }
+    auto endas = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = endas - startas;
+    cout << "Rusiavimo laikas: " << fixed << setprecision(3) << elapsed.count() << " s" << endl;
+
+    isvedimas(b, gerai, "gerai_"+failovardas);
+    isvedimas(b, blogai, "blogai_"+failovardas);
+}
+
+template <template<typename> class Container>
+void antra_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h)
+{
+    if constexpr (std::is_same_v<std::remove_cv_t<std::remove_reference_t<decltype(Grupe)>>,std::list<Studentas<Container>>>) 
+    {
+    auto start = chrono::high_resolution_clock::now();
+    Grupe.sort([=](const Studentas<Container>& a, const Studentas<Container>& b)
+    {switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }});
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elaps = end - start;
+    cout << "Rikiavimo laikas naudojant konteineri list: " << setprecision(3) << elaps.count() << " s\n";
+    }
+    else
+    {
+        auto start = chrono::high_resolution_clock::now();
+        sort(std::execution::par, Grupe.begin(), Grupe.end(), [=](const Studentas<Container>& a, const Studentas<Container>& b)
+        { switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }
+        });
+        auto end = chrono::high_resolution_clock::now();
+        chrono::duration<double> elaps = end - start;
+        cout << "Rikiavimo laikas naudojant konteineri vector: " << fixed << setprecision(3) << elaps.count() << " s\n";
+    }
+
+    Container<Studentas<Container>> blogai, temp = Grupe;
+    auto startas = chrono::high_resolution_clock::now(); 
+    for(auto it = Grupe.begin(); it != Grupe.end();)
+    {
+        if(it->rez < 5)
+        {
+            blogai.push_back(*it);
+            it = Grupe.erase(it);
+        }
+        else ++it;
+    }
+    auto endas = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = endas - startas;
+    cout << "Rusiavimo laikas: " << fixed << setprecision(3) << elapsed.count() << " s" << endl;
+
+    isvedimas(b, Grupe, "gerai_"+failovardas);
+    isvedimas(b, blogai, "blogai_"+failovardas);
+}
+
+template <template<typename> class Container>
+void trecia_strat_rusiavimas(int b, Container<Studentas<Container>>& Grupe, string failovardas, int g, int h)
+{
+    if constexpr (std::is_same_v<std::remove_cv_t<std::remove_reference_t<decltype(Grupe)>>,std::list<Studentas<Container>>>) 
+    {
+    auto start = chrono::high_resolution_clock::now();
+    Grupe.sort([=](const Studentas<Container>& a, const Studentas<Container>& b)
+    {switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }});
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elaps = end - start;
+    cout << "Rikiavimo laikas naudojant konteineri list: " << setprecision(3) << elaps.count() << " s\n";
+    }
+    else
+    {
+        auto start = chrono::high_resolution_clock::now();
+        sort(std::execution::par, Grupe.begin(), Grupe.end(), [=](const Studentas<Container>& a, const Studentas<Container>& b)
+        { switch (g)
+         {
+          case 1: return h==1 ? a.vard < b.vard : a.vard > b.vard;
+          case 2: return h==1 ? a.pav < b.pav : a.pav > b.pav;
+          case 3: return h==1 ? a.rez < b.rez : a.rez > b.rez;
+          case 4: return h==1 ? a.med < b.med : a.med > b.med;
+          default: return false;
+         }
+        });
+        auto end = chrono::high_resolution_clock::now();
+        chrono::duration<double> elaps = end - start;
+        cout << "Rikiavimo laikas naudojant konteineri vector: " << fixed << setprecision(3) << elaps.count() << " s\n";
+    }
+
+    Container<Studentas<Container>> blogai;
+    auto startas = chrono::high_resolution_clock::now();
+    auto centras = partition(Grupe.begin(), Grupe.end(), [](const Studentas<Container>& temp) { return temp.rez < 5; });
+    blogai.insert(blogai.end(), make_move_iterator(centras), make_move_iterator(Grupe.end()));
+    Grupe.erase(centras, Grupe.end());
+    auto endas = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = endas - startas;
+    cout << "Rusiavimo laikas: " << fixed << setprecision(3) << elapsed.count() << " s" << endl;
+
+    isvedimas(b, Grupe, "gerai_"+failovardas);
+    isvedimas(b, blogai, "blogai_"+failovardas);
 }
