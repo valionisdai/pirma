@@ -5,10 +5,10 @@
   
   #### Atlikti rūšiavimo spartos testai:
   ***1 strategija***:  
-  Bendras studentų konteineris padalinamas į du - *gerai* ir *blogai*.
-  Vienas studentas egzistuoja dviejuose konteineriuose: *bendrame* ir *gerai*/*blogai*, rūšiavimo greitį lemia konteinerio tipas, tačiau atminties sąnaudos didelės.     
+  Bendras studentų konteineris padalinamas į du - ***gerai*** ir ***blogai***.
+  Vienas studentas egzistuoja dviejuose konteineriuose: *bendrame* ir ***gerai***/***blogai***, rūšiavimo greitį lemia konteinerio tipas, tačiau atminties sąnaudos didelės.     
   ***2 strategija***:   
-  Sukuriamas tik vienas naujas konteineris *blogai*. Studentai, kurie perkeliami į konteinerį *blogai* yra ištrinami iš pirmojo konteinerio.
+  Sukuriamas tik vienas naujas konteineris ***blogai***. Studentai, kurie perkeliami į konteinerį ***blogai*** yra ištrinami iš pirmojo konteinerio.
   Vienas studentas egzistuoja tik viename konteineryje. Atmintis naudojama efektyviau, tačiau trynimai gali būti lėti.   
   ***3 strategija***:  
   Pasirinkta 2 strategija ir naudojamas `partition` greitesniam rūšiavimui. Rūšiavimas vyksta greičiau negu naudojant pirmą arba antrą strategijas.  
@@ -37,7 +37,12 @@
   | **stud_10000000.txt** | 16s | 7s| 4.077s |1.889 s|
 
   ### Naudojimosi instrukcija
-  
+  1. Patikrinkite ar kompiuteryje turite įdiegtus ***C++ kompiliatorių*** bei projekto generavimo įrankius ***CMake***, jei ne - parsisiųskite ir įsidiegite.
+  2. Atsisiųskite failus *main.cpp*, *mylib.cpp*, *mylib.h*, *CMakeLists.txt*, *run.bat*.
+  3. Apklanke, kuriame bus vykdomas kodas (jūsų pasirinkimas) sukurkite aplankus **"src"** ir **"Include"**, ir į juos perkelkite failus. *main.cpp* ir *mylib.cpp* į aplanką **"src"**, o *mylib.h* į apklanką **"Include"**. *CMakeLists.txt* ir *run.bat* failus palikite aplanke, kur bus vykdomas Jūsų kodas.
+  4. Paleiskite *run.bat* failą. Jame yra surašytos visos komandos, reikalingos programos kodo paleidimui.
+  5. Norėdami po programos uždarymo vėl paleisti programą, leiskite arba *run.bat*, arba *Work_with_Files.exe* failus.
+
 
 # v0.3
 1. Gerokai pakeistas kodas. Viskas optimizuota.
