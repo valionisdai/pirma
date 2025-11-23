@@ -3,7 +3,19 @@
   Optimizuotas kodas.
   Pridetas ***CMakeLists.txt*** failas.
   
-  Atlikti rūšiavimo spartos testai:
+  #### Atlikti rūšiavimo spartos testai:
+  ***1 strategija***:  
+  Bendras studentų konteineris padalinamas į du - *gerai* ir *blogai*.
+  Vienas studentas egzistuoja dviejuose konteineriuose: *bendrame* ir *gerai*/*blogai*, rūšiavimo greitį lemia konteinerio tipas, tačiau atminties sąnaudos didelės.     
+  ***2 strategija***:   
+  Sukuriamas tik vienas naujas konteineris *blogai*. Studentai, kurie perkeliami į konteinerį *blogai* yra ištrinami iš pirmojo konteinerio.
+  Vienas studentas egzistuoja tik viename konteineryje. Atmintis naudojama efektyviau, tačiau trynimai gali būti lėti.   
+  ***3 strategija***:  
+  Pasirinkta 2 strategija ir naudojamas `partition` greitesniam rūšiavimui. Rūšiavimas vyksta greičiau negu naudojant pirmą arba antrą strategijas.  
+  ***4 strategija***:  
+  `vector` ir `list` taikomos skirtingos strategijos. `list` naudoja `splice` metodą, o `vector` naudoja `partition`.  
+  Naudojami tik 2 konteineriai, o sukuriamas naujai tik vienas. Studentas egzistuoja tik viename. 
+  
   ### Naudojant  `vector` konteineri
   | Failai | **1 strategija** | **2 strategija** | **3 strategija**| **4 strategija**** |
   |:---|:-------------:|:-------------:|:-------------:| :--: |
@@ -24,6 +36,8 @@
   | **stud_1000000.txt**  | 1s | 0s | 0.320s |0.167 s|
   | **stud_10000000.txt** | 16s | 7s| 4.077s |1.889 s|
 
+  ### Naudojimosi instrukcija
+  
 
 # v0.3
 1. Gerokai pakeistas kodas. Viskas optimizuota.
